@@ -22,7 +22,6 @@ public class EmployeeManagement {
         scanner.nextLine();
         System.out.println("Enter Employee Name: ");
         emp.name = scanner.nextLine();
-        scanner.nextLine();
         System.out.println("Enter Employee Designation: ");
         emp.designation = scanner.nextLine();
         System.out.println("Enter Employee Salary: ");
@@ -34,6 +33,7 @@ public class EmployeeManagement {
             statement.setString(2,emp.name);
             statement.setString(3,emp.designation);
             statement.setInt(4,emp.salary);
+            statement.executeUpdate();
         }catch(SQLException e) {
             e.printStackTrace();
         }
@@ -73,15 +73,14 @@ public class EmployeeManagement {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
     }
         public static void updateEmployee(Connection con, int id) {
         Employee emp= new Employee();
         emp.empId = id;
         Scanner scanner= new Scanner(System.in);
-        scanner.nextLine();
         System.out.println("Enter Employee Name: ");
         emp.name= scanner.nextLine();
-        scanner.nextLine();
         System.out.println("Enter Employee Designation: ");
         emp.designation= scanner.nextLine();
         System.out.println("Enter Employee Salary: ");
@@ -109,7 +108,7 @@ public class EmployeeManagement {
 
         try {
             //connecting the sql database
-            Class.forName("oracle.jdbc.driver.OracleDriver");
+//            Class.forName("oracle.jdbc.driver.OracleDriver");
             Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "scott", "tiger");
             do {
                 //the console greeting screen
@@ -170,7 +169,7 @@ public class EmployeeManagement {
                 }
 
             } while (choice != 5);
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
